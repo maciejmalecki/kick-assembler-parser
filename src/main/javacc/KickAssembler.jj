@@ -1,0 +1,33 @@
+PARSER_BEGIN(KickAssembler)
+
+public class KickAssembler {
+    public static void main(String[] args) throws ParseException {
+        KickAssembler parser = new KickAssembler(System.in);
+        parser.Input();
+    }
+}
+
+PARSER_END(KickAssembler)
+
+SKIP: {
+    " "
+    | "\t"
+    | "\n"
+    | "\r"
+}
+
+TOKEN: {
+    < ID: ["a"-"z", "A"-"Z", "_"] ( ["a"-"z", "A"-"Z", "_", "0"-"9"] )* >
+    |
+    < NUM: (["0"-"9"])+ >
+    |
+    < STRING_LITERAL: "\"" (["a"-"z", "A"-"Z", "_", "/"])+ "\"" >
+}
+
+void Input() :
+{
+    Token t;
+}
+{
+    t=<NUM>
+}
